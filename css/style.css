@@ -1,0 +1,383 @@
+@font-face {
+	font-family: "MINECRAFT";
+    src: url("../fonts/MINECRAFT PE.ttf");
+    	
+}
+
+@font-face {
+	font-family: "theHard way RMX";
+    src: url("../fonts/theHard way RMX.ttf");
+    	
+}
+
+@font-face {
+	font-family: "HelveticaNeueCyr";
+    src: url("../fonts/HelveticaNeueCyr/HelveticaNeueCyr-Black.ttf");
+    	
+}
+
+@keyframes appearance {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes disappearance {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+.disappear {
+    opacity: 0;
+    transition: 500ms ease-out;
+}
+
+.light-switching-off {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;    
+}
+
+.switch-off {
+    background: rgb(22, 22, 22);
+    transition: 400ms ease-out;
+    z-index: 10;
+}
+    
+
+body {
+    padding: 0;
+    margin: 0;
+    background: url("../img/noise.jpg");
+    font-size: 0;
+    box-sizing: border-box;
+    text-align: center;
+    animation: appearance 1s;
+}
+
+.game-body {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.95),rgba(0,0,0,0.6) 20%,rgba(0,0,0,0.6) 80%, rgba(0,0,0,0.95));
+    z-index: 1;
+}
+
+header {
+    text-align: center;
+    z-index: 5;
+}
+
+.game-name {
+    display: inline-block;
+    z-index: 5;
+}
+.game-name h1 {
+    padding-top: calc(100vh/20);
+    display: table-cell;    
+    font-family: "MINECRAFT";
+    font-size: calc(100vh/20);     
+    color: white;
+    text-transform: uppercase; 
+    z-index: 5;  
+    cursor: context-menu; 
+}
+
+.main-menu form {
+  text-align: center;
+}
+
+.form-item {
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.game-options, .user-profile-form-inputs {    
+    text-align: center;
+    margin-top: calc(100vh/30);
+}
+
+.option-wrapper, .form-item {    
+    display: inline-block;    
+    margin-right: calc(100vw/40);
+    height: calc(100vh/12);
+    width: calc(100vw/5);
+    border: calc(100vh/300) solid rgba(255, 255, 255, 0.9);    
+    text-align: center;
+}
+
+.form-item, .new-game-button {
+  background: none;   
+  outline: 0; 
+  color: rgba(252, 136, 136, 0.877);  
+}
+
+.form-item::placeholder {
+  opacity: 1;
+  color: white;
+}
+
+.option-wrapper:last-child, .form-item:last-child {
+    margin-right: 0;
+}
+
+.option {
+  display: table-cell;
+  vertical-align: middle;
+  color: white;
+}
+
+.option, .form-item { 
+  font-size: calc(100vh/40);
+  font-family: "HelveticaNeueCyr";  
+  width: calc(100vw/5);
+  height: calc(100vh/12);
+  cursor: pointer;
+}
+
+.option:hover, .form-item:hover::-webkit-input-placeholder,  .form-item:focus::-webkit-input-placeholder {
+    color: rgba(252, 136, 136, 0.877);
+}
+
+.option:active, .main-menu-button:active {
+    box-shadow: 0 0 calc(100vh/40) rgba(255, 245, 245, 0.596);
+}
+.new-game-button {
+  display: inline-block;
+  margin: calc(100vh/30) 0;
+  border: calc(100vh/300) solid rgba(255, 255, 255, 0.9);
+}
+
+.discription-wrapper{    
+    text-align: center;
+}
+
+.discription {
+    display: inline-block;
+    text-align: center;
+    font-size: calc(100vh/40);
+    font-family: "HelveticaNeueCyr";
+    color: white;
+    width:calc(100vh/1.2);
+    margin: calc(100vh/100) 0;
+    z-index: 2;
+}
+
+.discription h2 {
+    margin: calc(100vh/100) 0;
+}
+
+.discription ul  {
+    padding: 0;    
+    list-style: none;
+}
+
+.game-field-wrapper { 
+    background: rgba(0, 0, 0, 0.4);
+    display: inline-block;
+    animation: appearance 1s;
+    text-align: center;
+    width: calc(100vw/1.6);
+    height: calc(100vw/2.86);
+}
+
+.game-field {
+    animation: appearance 1s;
+    display: table-cell;
+    vertical-align: middle;
+    width: calc(100vw/1.6);
+    height: calc(100vw/3.5);
+}
+
+.main-menu-button {
+    position: absolute;
+    margin-left: calc(100vw/40);
+    display: inline-block;    
+    border: calc(100vh/300) solid rgba(255, 255, 255, 0.9);    
+    text-align: center;
+    font-size: calc(100vh/55);
+    font-family: "HelveticaNeueCyr";
+    color: rgba(255, 255, 255, 0.9);
+    padding: calc(100vh/90) calc(100vh/50);
+    cursor: pointer;
+    animation: appearance 1s;
+}
+
+.main-menu-button:hover {
+    color: rgba(252, 136, 136, 0.877);
+}
+
+.game-timer {
+    margin: calc(100vw/100) auto;
+    margin-bottom: calc(100vw/300);
+    display: block;
+    font-size: calc(100vw/80);
+    font-family: "HelveticaNeueCyr";
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.option-list-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background:  rgba(0, 0, 0, 0.8);
+    animation: appearance 500ms;
+    text-align: center;  
+}
+
+.option-list {
+    height: calc(100vh/2);
+    background: linear-gradient(rgba(0,0,0,0), rgb(0, 0, 0) 40%, rgb(0, 0, 0) 60%, rgba(0,0,0,0)); 
+    margin: calc(100vh/4) auto;
+    text-align: center;
+    overflow: hidden;
+}
+
+.shirt-in-list {
+    margin: calc(100vw/15) calc(100vw/80);
+    display: inline-block;
+    width: calc(100vw/15);
+    height: calc(100vw/10);
+    border-radius: calc(100vh/100);
+    transition: ease-in, 200ms;
+    cursor: pointer;
+    background-size: cover;
+    animation: appearance 1.5s;
+    background-position: center;
+}
+
+.shirt-in-list:hover {
+    transform: scale(1.2);
+}
+
+.shirt-in-list:active {
+    transition: 0s;
+    box-shadow: 0 0 10px 5px rgba(255, 231, 231, 0.541);
+}
+
+.difficulty {
+    font-size: calc(100vh/35);
+    font-family: "HelveticaNeueCyr";
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    margin: calc(100vh/4.3) calc(100vh/50);
+}
+
+.difficulty:hover {
+    transform: scale(1.2);
+    color: rgba(252, 136, 136, 0.877);    
+}
+
+.difficulty:active {
+    transition: 0s;
+    text-shadow: 0 0 calc(100vh/40) rgba(255, 244, 244, 0.404);  
+}
+
+.card {
+    position: relative;
+    margin: calc(100vw/150) calc(100vw/150);
+    display: inline-block;
+    width: calc(100vw/16);
+    height: calc(100vw/11);
+    cursor: pointer;
+    animation: appearance 1.5s;    
+    transition: 500ms;
+    transform-style: preserve-3d;
+}
+
+.flip {
+    transform: rotateY(180deg);
+}
+
+.card-shirt {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    backface-visibility: hidden;
+    border-radius: calc(100vw/300);
+    background-position: center;
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    background-position: center;
+    border-radius: calc(100vw/300);
+}
+
+.final-game-screen {
+   
+    padding-top: calc(100vh/25);
+}
+
+.congratulation {
+    position: relative;
+    display: inline-block;
+    font-size: calc(100vh/10);
+    font-family: "HelveticaNeueCyr";
+    color: rgba(252, 136, 136, 0.877); 
+    z-index: 11;  
+    animation: appearance 500ms; 
+}
+
+.score-table-label {
+    position: relative;
+    font-size: calc(100vh/30);
+    font-family: "HelveticaNeueCyr";
+    color: rgba(255, 255, 255, 0.9); 
+    z-index: 11;
+    margin: calc(100vh/30) 0;  
+    animation: appearance 1500ms;
+    transition: 500ms; 
+}
+
+.score-table {
+    position: relative;
+    display: inline-block;
+    font-size: calc(100vh/40);
+    font-family: "HelveticaNeueCyr";
+    border-collapse: collapse;  
+    z-index: 11;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.096);
+    animation: appearance 2000ms;    
+}
+
+.score-table-head {
+    border-radius: 5px;
+    color: rgba(252, 136, 136, 0.877); 
+}
+
+.score-table-row {
+    border: calc(100vh/300) solid rgba(255, 255, 255, 0.9);
+}
+
+.score-table-cell {
+    border: calc(100vh/300) solid rgba(255, 255, 255, 0.9);        
+    padding: calc(100vh/80) calc(100vh/30);
+}
+
+.menu-button-final-screen {
+    position: relative;
+    z-index: 11;
+    margin: calc(100vh/35) auto;
+    padding: calc(100vh/40) 0;
+    display: block;
+    background: rgba(255, 255, 255, 0.096);
+    font-size: calc(100vh/37);
+    font-family: "HelveticaNeueCyr";
+}
+
+.score-table-wrapper {
+    display: inline-block;
+}
+
+
+  

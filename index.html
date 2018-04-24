@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Match-match game</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/entities.js" ></script>
+    <script src="game.js" defer></script>
+</head>
+<body>
+  <div class="game-body">
+    <header>
+        <div class="game-name">
+          <h1>match-match game</h1>
+        </div>
+    </header>
+    <main>
+      <div class="main-menu">
+        <form onsubmit="return false;">
+          <div class="user-profile-form-inputs">
+            <input class="form-item" id="first-name" type="text" required  placeholder="First Name">
+            <input class="form-item" id="last-name" type="text" required  placeholder="Last Name">
+            <input class="form-item" id="email" type="email" placeholder="Email">
+          </div>
+            <div class="game-options"> 
+              <div class="option-wrapper">
+                <div class="option" id="shirt-button">Choose the card shirt</div>                    
+              </div> 
+              <div class="option-wrapper">
+                <div class="option" id="difficulty-button">Choose the game difficulty</div>                                  
+              </div>                                                    
+            </div>                 
+            <button class="option new-game-button" id="new-game-button">New Game</button>                                      
+          </form> 
+        <div class="discription-wrapper">
+          <div class="discription">
+            <h2>How to play</h2>
+            <p>Memory is a counter game where the object is to find pares.
+                When the game begins, all pictures are hidden.</p>
+            <h2>To play</h2>
+            <ul>
+              <li>Select two cards to try to math the pictures.</li>
+              <li>If you match the pictures you can go again.</li>
+              <li> If they don't match it is the computer turn them.</li>
+              <li>The player that finds all pairs wins!</li>
+              <li>Have fun!</li>
+            </ul>
+          </div>
+        </div>
+      </div>            
+    </main>   
+  </div>
+  <div class="light-switching-off"></div>  
+</body>
+
+       
+
+</html>
