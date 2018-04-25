@@ -1,13 +1,11 @@
-import  { GameElement, Timer, OptionItem, Card } from './js/classes.js';
-
 const shirts = {
-	'shirt1' : 'url(../img/shirt1.jpg)',
-	'shirt2' : 'url(../img/shirt2.jpg)',
-	'shirt3' : 'url(../img/shirt3.jpg)',
-	'shirt4' : 'url(../img/shirt4.jpg)',
-	'shirt5' : 'url(../img/shirt5.jpg)',
-	'shirt6' : 'url(../img/shirt6.jpg)',
-	'shirt7' : 'url(../img/shirt7.jpg)'
+	'shirt1' : "url('../img/shirt1.jpg')",
+	'shirt2' : "url('../img/shirt2.jpg')",
+	'shirt3' : "url('../img/shirt3.jpg')",
+	'shirt4' : "url('../img/shirt4.jpg')",
+	'shirt5' : "url('../img/shirt5.jpg')",
+	'shirt6' : "url('../img/shirt6.jpg')",
+	'shirt7' : "url('../img/shirt7.jpg')"
 };
 
 const cardFaces = {
@@ -106,6 +104,8 @@ const chooseDifficulty = () => {
 };
 
 const switchOffTheLight = () => { document.querySelector('.light-switching-off').classList.add('switch-off') };
+
+
 const startGame = () => {
 	getUserInformation();
 	closeMainMenu();
@@ -200,7 +200,8 @@ const startGame = () => {
 		scoreTableTimeHead.pushInto(scoreTableHead.body);
 		scoreTableHead.pushInto(scoreTable.body);
 		goToMainMenuButton.body.classList.add('menu-button-final-screen');
-	
+		
+
 		for(let i = 1; i <= numberOfUsers; i++) {
 			const userProfile = JSON.parse(localStorage[`user${i}`]);
 			if(userProfile['counter']) users.push(userProfile); // to choose only users who won the game
@@ -221,6 +222,7 @@ const startGame = () => {
 			const newUserProfile = JSON.stringify(user);
 			localStorage[`user${i+1}`] = newUserProfile;
 		});
+
 		
 		scoreTable.pushInto(scoreTableWrapper.body);
 		goToMainMenuButton.pushInto(scoreTableWrapper.body);
