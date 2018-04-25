@@ -62,12 +62,11 @@ export class Timer extends GameElement {
 	}  
     
 	saveValue() {
-		const numberOfLastUser = localStorage.length;
-		const currentUserIdentifier = `user${numberOfLastUser}`;
-		let currentUserProfile = JSON.parse(localStorage[currentUserIdentifier]);
-		currentUserProfile['time'] = this.timerScreenValue;
-		currentUserProfile['counter'] = this.timerCounter;
-		localStorage.setItem(currentUserIdentifier, JSON.stringify(currentUserProfile));	
+		const value = {
+			'time' : this.timerScreenValue,
+			'counter' : this.timerCounter
+		};
+		return value;
 	}
 };
 

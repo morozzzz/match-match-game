@@ -38,21 +38,29 @@ const shirtButton = document.querySelector('#shirt-button');
 const difficultyButton = document.querySelector('#difficulty-button'); 
 const newGameButton = document.querySelector('#new-game-button');
 const form = document.querySelector('form');
-
+let firstName = null;
+let lastName = null;
+let email = null;
 let chosenCardShirt = shirts['shirt1']; 
-let chosenGameDifficulty = difficulties['low']; 
+let chosenGameDifficulty = difficulties['low'];
+let currentUserTimerValue = null;
+
 
 const getUserInformation = () => {
-	const firstName = userFirstNameInput.value;
-	const lastName = userLastNameInput.value;
-	const email = userEmailInput.value;	
-	const userNumber = localStorage.length+1;
-	const userInfo = {
+	firstName = userFirstNameInput.value;
+	lastName = userLastNameInput.value;
+	email = userEmailInput.value;	
+	let users = localStorage['users'] ? JSON.parse(localStorage['users']) : [];
+	const newUserInfo = {
 		'first name' : firstName,
 		'last name' : lastName,
 		'email' : email
 	};
-	localStorage.setItem(`user${userNumber}`, JSON.stringify(userInfo));	
+	
+	users = users.map((user) => JSON.parse(user));
+	users.push(newUserInfo);
+	users = users.map((user) => JSON.stringify(user));
+	localStorage['users'] = JSON.stringify(users);
 };
 
 const closeMainMenu = () => {
@@ -166,16 +174,13 @@ const startGame = () => {
 	const checkForEndOfTheGame = () => {
 		if(numberOfCards === 0) {
 			gameTimer.stop();
-			gameTimer.saveValue();
+			currentUserTimerValue = gameTimer.saveValue();
 			setTimeout(switchOffTheLight, 1000);
 			setTimeout(processTheResults, 2000);
 		} 		
 	};
 	
-	const processTheResults = () => {		
-		let users = [];
-		let sortedUsers = [];
-		const numberOfUsers = localStorage.length;		
+	const processTheResults = () => {				
 		const finalGameScreen = new GameElement('div','final-game-screen');
 		const congratulation = new GameElement('div','congratulation');
 		const scoreTableWrapper = new GameElement('table','score-table-wrapper');
@@ -185,8 +190,15 @@ const startGame = () => {
 		const scoreTableTimeHead = new GameElement('th','score-table-cell');
 		const scoreTableLabel = new GameElement('div','score-table-label');
 		const scoreTableFooter = new GameElement('tr','score-table-row');
+		const scoreTableIdentifier = Object.keys(difficulties).find(key => difficulties[key] === chosenGameDifficulty);
 		const compareUsersTime = (a,b) => a['counter'] - b['counter'];
-
+		const currentUserScore = {
+			'user' : `${firstName} ${lastName}`,
+			'time' : currentUserTimerValue['time'],
+			'counter' : currentUserTimerValue['counter']
+		};
+		let currentScoreTable = [];		
+		
 		congratulation.addContent('WIN');
 		congratulation.pushInto(finalGameScreen.body);
 		scoreTableLabel.addContent('BEST SCORES');
@@ -197,27 +209,27 @@ const startGame = () => {
 		scoreTableTimeHead.pushInto(scoreTableHead.body);
 		scoreTableHead.pushInto(scoreTable.body);
 		goToMainMenuButton.body.classList.add('menu-button-final-screen');
-	
-		for(let i = 1; i <= numberOfUsers; i++) {
-			const userProfile = JSON.parse(localStorage[`user${i}`]);
-			if(userProfile['counter']) users.push(userProfile); // to choose only users who won the game
-		}		
-		
-		sortedUsers = users.sort(compareUsersTime);
-		sortedUsers.forEach((user,i) => {
-			if(i < 10) {
-				const scoreTableRow = new GameElement('tr','score-table-row');
-				const scoreTableNameCell = new GameElement('td','score-table-cell');
-				const scoreTableTimeCell = new GameElement('td','score-table-cell');
-				scoreTableNameCell.addContent(user['first name'] + ' ' + user['last name']);
-				scoreTableTimeCell.addContent(user['time']);
-				scoreTableNameCell.pushInto(scoreTableRow.body);
-				scoreTableTimeCell.pushInto(scoreTableRow.body);
-				scoreTableRow.pushInto(scoreTable.body);
-			}
-			const newUserProfile = JSON.stringify(user);
-			localStorage[`user${i+1}`] = newUserProfile;
+
+		if(localStorage[`${scoreTableIdentifier} score table`]) {
+			currentScoreTable = JSON.parse(localStorage[`${scoreTableIdentifier} score table`]);
+			currentScoreTable = currentScoreTable.map((user) => JSON.parse(user));
+		}
+
+		currentScoreTable.push(currentUserScore);		
+		currentScoreTable = currentScoreTable.sort(compareUsersTime);
+		if(currentScoreTable.length > 10) currentScoreTable.pop();
+		currentScoreTable = currentScoreTable.map((user) => {
+			const scoreTableRow = new GameElement('tr','score-table-row');
+			const scoreTableNameCell = new GameElement('td','score-table-cell');
+			const scoreTableTimeCell = new GameElement('td','score-table-cell');
+			scoreTableNameCell.addContent(user['user']);
+			scoreTableTimeCell.addContent(user['time']);
+			scoreTableNameCell.pushInto(scoreTableRow.body);
+			scoreTableTimeCell.pushInto(scoreTableRow.body);
+			scoreTableRow.pushInto(scoreTable.body);
+			return JSON.stringify(user);
 		});
+		localStorage[`${scoreTableIdentifier} score table`] = JSON.stringify(currentScoreTable);
 		
 		scoreTable.pushInto(scoreTableWrapper.body);
 		goToMainMenuButton.pushInto(scoreTableWrapper.body);
