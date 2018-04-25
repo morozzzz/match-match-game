@@ -2,27 +2,27 @@ import  { GameElement, Timer, OptionItem, Card } from './js/classes.js';
 
 const shirts = {
 	'shirt1' : 'url(https://raw.githubusercontent.com/morozzzz/match-match-game/master/img/shirt1.jpg)',
-	'shirt2' : 'url(../img/shirt2.jpg)',
-	'shirt3' : 'url(../img/shirt3.jpg)',
-	'shirt4' : 'url(../img/shirt4.jpg)',
-	'shirt5' : 'url(../img/shirt5.jpg)',
-	'shirt6' : 'url(../img/shirt6.jpg)',
-	'shirt7' : 'url(../img/shirt7.jpg)'
+	'shirt2' : 'url(https://raw.githubusercontent.com/morozzzz/match-match-game/master/img/shirt2.jpg)',
+	'shirt3' : 'url(https://raw.githubusercontent.com/morozzzz/match-match-game/master/img/shirt3.jpg)',
+	'shirt4' : 'url(https://raw.githubusercontent.com/morozzzz/match-match-game/master/img/shirt4.jpg)',
+	'shirt5' : 'url(https://raw.githubusercontent.com/morozzzz/match-match-game/master/img/shirt5.jpg)',
+	'shirt6' : 'url(https://raw.githubusercontent.com/morozzzz/match-match-game/master/img/shirt6.jpg)',
+	'shirt7' : 'url(https://raw.githubusercontent.com/morozzzz/match-match-game/master/img/shirt7.jpg)'
 };
 
 const cardFaces = {
-	1 : 'url(../img/face1.jpg)',
-	2 : 'url(../img/face2.jpg)',
-	3 : 'url(../img/face3.jpg)',
-	4 : 'url(../img/face4.jpg)',
-	5 : 'url(../img/face5.jpg)',
-	6 : 'url(../img/face6.jpg)',
-	7 : 'url(../img/face7.jpg)',
-	8 : 'url(../img/face8.jpg)',
-	9 : 'url(../img/face9.jpg)',
-	10 : 'url(../img/face10.jpg)',
-	11 : 'url(../img/face11.jpg)',
-	12 : 'url(../img/face12.jpg)'
+	1 : 'url(https://raw.githubusercontent.com/morozzzz/match-match-game/master/img/face1.jpg)',
+	2 : 'url(https://raw.githubusercontent.com/morozzzz/match-match-game/master/img/face2.jpg)',
+	3 : 'url(https://raw.githubusercontent.com/morozzzz/match-match-game/master/img/face3.jpg)',
+	4 : 'url(https://raw.githubusercontent.com/morozzzz/match-match-game/master/img/face4.jpg)',
+	5 : 'url(https://raw.githubusercontent.com/morozzzz/match-match-game/master/img/face5.jpg)',
+	6 : 'url(https://raw.githubusercontent.com/morozzzz/match-match-game/master/img/face6.jpg)',
+	7 : 'url(https://raw.githubusercontent.com/morozzzz/match-match-game/master/img/face7.jpg)',
+	8 : 'url(https://raw.githubusercontent.com/morozzzz/match-match-game/master/img/face8.jpg)',
+	9 : 'url(https://raw.githubusercontent.com/morozzzz/match-match-game/master/img/face9.jpg)',
+	10 : 'url(https://raw.githubusercontent.com/morozzzz/match-match-game/master/img/face10.jpg)',
+	11 : 'url(https://raw.githubusercontent.com/morozzzz/match-match-game/master/img/face11.jpg)',
+	12 : 'url(https://raw.githubusercontent.com/morozzzz/match-match-game/master/img/face12.jpg)'
 };
 
 const difficulties = {
@@ -106,6 +106,7 @@ const chooseDifficulty = () => {
 };
 
 const switchOffTheLight = () => { document.querySelector('.light-switching-off').classList.add('switch-off') };
+
 const startGame = () => {
 	getUserInformation();
 	closeMainMenu();
@@ -117,14 +118,7 @@ const startGame = () => {
 		const getMainMenu = () => { location.href = 'index.html' };
 		switchOffTheLight();
 		setTimeout(getMainMenu,400);
-		 };
-	gameFieldWrapper.pushInto('.game-body');
-	gameTimer.pushInto('.game-field-wrapper');
-	gameField.pushInto('.game-field-wrapper');
-	goToMainMenuButton.addContent('Main Menu');
-	goToMainMenuButton.pushInto('.game-body');	
-	gameTimer.start();	
-	goToMainMenuButton.addEvent('click', goToMainMenu);
+	};
 
 	const processTheCard = (target) => {
 		const card = target;
@@ -166,7 +160,9 @@ const startGame = () => {
 			processTheCard.firstTryValue = cardPairIdentifier;
 		} 		
 	};
+	
 	const checkForTwoOpenedCards = () => processTheCard.chosenCards && processTheCard.chosenCards.length === 2;
+
 	const checkForEndOfTheGame = () => {
 		if(numberOfCards === 0) {
 			gameTimer.stop();
@@ -175,6 +171,7 @@ const startGame = () => {
 			setTimeout(processTheResults, 2000);
 		} 		
 	};
+	
 	const processTheResults = () => {		
 		let users = [];
 		let sortedUsers = [];
@@ -226,7 +223,6 @@ const startGame = () => {
 		goToMainMenuButton.pushInto(scoreTableWrapper.body);
 		scoreTableWrapper.pushInto(finalGameScreen.body);
 		finalGameScreen.pushInto('body');
-		
 	};
 
 	const checkForPair = (event) => {			
@@ -239,7 +235,7 @@ const startGame = () => {
 			target = target.parentNode;
 		}
 	};
-
+	
 	let numberOfCards = chosenGameDifficulty;
 	let cardDeck = [];
 	const shuffleDeck = (deck) => { 
@@ -247,8 +243,8 @@ const startGame = () => {
 		let j = Math.floor(Math.random() * (i + 1)); 
 		[deck[i], deck[j]] = [deck[j], deck[i]]; 
 		} 
-	};
-
+	};	
+	
 	for(let i = 1; i <=  numberOfCards; i++) {
 		const pairIdentificator = Math.ceil(i/2);
 		const card = new Card('div', 'card', `card${i}`, `card${pairIdentificator}`);
@@ -258,9 +254,17 @@ const startGame = () => {
 	}
 	shuffleDeck(cardDeck);
 	cardDeck.forEach((card) => {
-		card.pushInto('.game-field');
-	});
+		card.pushInto(gameField.body);
+	});	
+	
+	gameTimer.pushInto(gameFieldWrapper.body);
+	gameField.pushInto(gameFieldWrapper.body);
 	gameField.addEvent('click', checkForPair);
+	gameFieldWrapper.pushInto('.game-body');
+	goToMainMenuButton.addContent('Main Menu');
+	goToMainMenuButton.pushInto('.game-body');		
+	goToMainMenuButton.addEvent('click', goToMainMenu);	
+	gameTimer.start();
 };
 
 shirtButton.addEventListener('click', chooseShirt);
