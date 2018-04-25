@@ -1,7 +1,7 @@
 import  { GameElement, Timer, OptionItem, Card } from './js/classes.js';
 
 const shirts = {
-	'shirt1' : "url('../img/shirt1.jpg')",
+	'shirt1' : "url(https://github.com/morozzzz/match-match-game/blob/master/img/shirt1.jpg)",
 	'shirt2' : "url('../img/shirt2.jpg')",
 	'shirt3' : "url('../img/shirt3.jpg')",
 	'shirt4' : "url('../img/shirt4.jpg')",
