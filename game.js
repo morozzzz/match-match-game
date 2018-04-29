@@ -241,7 +241,7 @@ const startGame = () => {
 		if(checkForTwoOpenedCards()) return;	
 		let target = event.target;		
 		while(target != this) {
-			if(target.classList.contains('card')) {
+			if(target.classList && target.classList.contains('card')) {
 				processTheCard(target);
 			}
 			target = target.parentNode;
