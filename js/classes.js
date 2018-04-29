@@ -29,7 +29,7 @@ export class GameElement {
 			parentSelector.removeChild(this.body);
 		}       
 	}
-};
+}
 
 export class Timer extends GameElement {
 	constructor(element,elementClassName) {
@@ -68,15 +68,15 @@ export class Timer extends GameElement {
 		};
 		return value;
 	}
-};
+}
 
 export class OptionItem extends GameElement {
 	constructor(element,elementClassName,itemId,itemUrl) {
 		super(element,elementClassName);
 		this.body.id = itemId;
-		this.body.style.backgroundImage = itemUrl;
+		this.body.style.backgroundImage = `url(${itemUrl})`;
 	}
-};
+}
 
 export class Card extends GameElement {
 	constructor(element,elementClassName,cardId,pairIdentificator) {
@@ -87,16 +87,16 @@ export class Card extends GameElement {
 
 	setShirt(shirtUrl) {
 		const shirt = document.createElement('div');
-		shirt.className = 'card-shirt'
-		shirt.style.backgroundImage = shirtUrl;
+		shirt.className = 'card-shirt';
+		shirt.style.backgroundImage = `url(${shirtUrl})`;
 		this.body.appendChild(shirt);
 
 	}
 
 	setFace(faceUrl) {
 		const face = document.createElement('div');
-		face.className = 'card-face'
-		face.style.backgroundImage = faceUrl;
+		face.className = 'card-face';
+		face.style.backgroundImage = `url(${faceUrl})`;
 		this.body.appendChild(face);
 	}
-};
+}
